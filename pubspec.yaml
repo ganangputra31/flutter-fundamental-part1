@@ -87,3 +87,7 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
+
+  
+  assets:
+    - assets/logo_polinema.jpg  # Gambar yang ada di dalam folder assets
