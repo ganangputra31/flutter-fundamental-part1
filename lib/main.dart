@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart'; // Jika menggunakan Cupertino style
+import 'basic_widgets/dialog_widget.dart'; // Pastikan import file dialog_widget.dart
 
 void main() {
   runApp(const MyApp());
@@ -12,7 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.red, // Tema warna aplikasi
+        primarySwatch: Colors.purple, // Tema aplikasi
       ),
       home: const MyHomePage(title: 'My Increment App'),
     );
@@ -40,26 +42,12 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-        backgroundColor: Colors.purple, // Warna AppBar ungu
-      ),
+      appBar: AppBar(title: Text(widget.title)),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text(
-              'Halo, Nama Saya Ganang Andika Kurnia Putra', // Menampilkan teks nama
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold, // Membuat font lebih tebal
-              ),
-            ),
-            const SizedBox(height: 20), // Jarak antar teks
-            const Text(
-              'You have pushed the button this many times:',
-              style: TextStyle(fontSize: 16), // Gaya teks lebih kecil
-            ),
+            const Text('You have pushed the button this many times:'),
             Text(
               '$_counter', // Menampilkan angka counter
               style: const TextStyle(
@@ -67,28 +55,18 @@ class _MyHomePageState extends State<MyHomePage> {
                 fontWeight: FontWeight.bold,
               ), // Gaya teks untuk angka
             ),
-            const SizedBox(height: 50), // Jarak antara counter dan FAB
+            const SizedBox(height: 50), // Jarak antara counter dan tombol FAB
+            DialogWidget(), // Memanggil widget dialog
           ],
         ),
       ),
-      floatingActionButton: Column(
-        mainAxisAlignment:
-            MainAxisAlignment.end, // Menempatkan tombol di bagian bawah
-        children: <Widget>[
-          Row(
-            mainAxisAlignment:
-                MainAxisAlignment.center, // Menempatkan tombol di tengah
-            children: [
-              FloatingActionButton(
-                onPressed: _incrementCounter, // Fungsi untuk menambah counter
-                tooltip: 'Increment Counter',
-                backgroundColor: Colors.pink, // Warna tombol sesuai tema
-                child: const Icon(Icons.thumb_up), // Ikon thumb_up
-              ),
-            ],
-          ),
-        ],
+      bottomNavigationBar: BottomAppBar(child: Container(height: 50.0)),
+      floatingActionButton: FloatingActionButton(
+        onPressed: _incrementCounter,
+        tooltip: 'Increment Counter',
+        child: const Icon(Icons.add), // Ikon tambah
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }
 }
