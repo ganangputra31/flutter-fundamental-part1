@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart'; // Pastikan cupertino diimpor
-import 'basic_widgets/loading_cupertino.dart'; // Import file loading_cupertino.dart
 
 void main() {
   runApp(const MyApp());
@@ -14,10 +12,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch:
-            Colors.purple, // Ubah warna tema agar sesuai dengan gambar
+        primarySwatch: Colors.red, // Tema warna aplikasi
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'My Increment App'),
     );
   }
 }
@@ -45,22 +42,24 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
-        backgroundColor:
-            Colors.purple, // Sesuaikan dengan warna yang diinginkan
+        backgroundColor: Colors.purple, // Warna AppBar ungu
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const Text(
-              'Contoh button:', // Teks yang menjelaskan tombol
-              style: TextStyle(fontSize: 16), // Gaya font lebih kecil
+              'Halo, Nama Saya Ganang Andika Kurnia Putra', // Menampilkan teks nama
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold, // Membuat font lebih tebal
+              ),
             ),
-
-            const SizedBox(
-              height: 20,
-            ), // Jarak antara teks dan indikator loading
-            const MyLoadingCupertino(), // Menampilkan indikator loading
+            const SizedBox(height: 20), // Jarak antar teks
+            const Text(
+              'You have pushed the button this many times:',
+              style: TextStyle(fontSize: 16), // Gaya teks lebih kecil
+            ),
             Text(
               '$_counter', // Menampilkan angka counter
               style: const TextStyle(
@@ -68,14 +67,27 @@ class _MyHomePageState extends State<MyHomePage> {
                 fontWeight: FontWeight.bold,
               ), // Gaya teks untuk angka
             ),
+            const SizedBox(height: 50), // Jarak antara counter dan FAB
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment Counter',
-        backgroundColor: Colors.purple, // Warna tombol sesuai tema
-        child: const Icon(Icons.add), // Ikon tambah
+      floatingActionButton: Column(
+        mainAxisAlignment:
+            MainAxisAlignment.end, // Menempatkan tombol di bagian bawah
+        children: <Widget>[
+          Row(
+            mainAxisAlignment:
+                MainAxisAlignment.center, // Menempatkan tombol di tengah
+            children: [
+              FloatingActionButton(
+                onPressed: _incrementCounter, // Fungsi untuk menambah counter
+                tooltip: 'Increment Counter',
+                backgroundColor: Colors.pink, // Warna tombol sesuai tema
+                child: const Icon(Icons.thumb_up), // Ikon thumb_up
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }
